@@ -5,7 +5,7 @@ const defaultState = {
   numItemsInCart: 0,
   cartTotal: 0,
   shipping: 500,
-  tax: 0.1,
+  tax: 0,
   orderTotal: 0,
 };
 
@@ -19,17 +19,32 @@ const cartSlice = createSlice({
     reducers:{
         addItem: (state, action) => {
             const {product} = action.payload
-            state.cartItems.push(product)
+            const item = state.cartItems.find(i => i.cardID === product.cardID)
+            if(item){
+                item.amount += product.amount
+            } else{
+                state.cartItems.push(product)
+            }
+
             state.numItemsInCart += product.amount 
             state.cartTotal += product.amount * product.price
-            state.tax *= product.amount 
-            state.orderTotal += state.cartTotal + state.shipping
-            localStorage.setItem('cart', JSON.stringify(state))
+            state.orderTotal = state.cartTotal + state.shipping
+            localStorage.setItem('cart', JSON.stringify(state)) 
+        },
+        removeItem: (state, action) => {
+            const {product} = action.payload
+
+            const newFilterItem  = state.cartItems.filter(i => i.cardID !== product.cardID)
+            state.cartItems = newFilterItem
+            state.numItemsInCart -= product.amount 
+            state.cartTotal -= product.amount * product.price
+            state.orderTotal = state.cartTotal + state.shipping
+            localStorage.setItem('cart', JSON.stringify(state)) 
         }
     }
 
 })
 
-export const {addItem} = cartSlice.actions
+export const {addItem, removeItem} = cartSlice.actions
 
 export default cartSlice.reducer
