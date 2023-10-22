@@ -1,6 +1,8 @@
 import React, { useState } from 'react'
 import { customFetch } from '../utils'
 import { Link, useLoaderData } from 'react-router-dom'
+import { useDispatch } from 'react-redux'
+import { addItem } from '../features/cart/cartSlice'
 
 export const loader = async (data) => {
     const {id} = data.params
@@ -10,10 +12,20 @@ export const loader = async (data) => {
 
 const SingleProducts = () => {
     const data = useLoaderData()
-    console.log(data.product.data);
+    const dispatch = useDispatch()
     const {company, description, image, price, title} = data.product.data.attributes
 
     const [productAmount, setProductAmount] = useState(1)
+
+
+    const cartProduct = {
+      cardID: data.product.data.id,
+      image, 
+      company,
+      price, 
+      title,
+      amount: parseInt(productAmount)
+    }
   return (
     <>
     <div className="text-sm breadcrumbs">
@@ -32,14 +44,14 @@ const SingleProducts = () => {
             <p>{description}</p>
             <p className='font-bold uppercase'>company: {company}</p>
             <p className='uppercase'>price: <span className='font-bold text-lg'>${price / 100}</span></p>
-           <select className="select select-accent w-full max-w-xs" value={productAmount} onChange={(e) => setProductAmount(e.target.value)}>
+           {/* <select className="select select-accent w-full max-w-xs" value={productAmount} onChange={(e) => setProductAmount(e.target.value)}>
                 <option value={1}>1</option>
                 <option value={2}>2</option>
                 <option value={3}>3</option>
                 <option value={4}>4</option>
                 <option value={5}>5</option>
-            </select>
-            <button className="btn btn-primary mt-2">Add Cart</button>
+            </select> */}
+            <button className="btn btn-primary mt-2" onClick={() => dispatch(addItem({product: cartProduct}))}>Add Cart</button>
         </div>
     </section>
     </>

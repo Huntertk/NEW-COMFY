@@ -6,6 +6,7 @@ import  Hero from "./Hero";
 import  FeaturesProduct from "./FeaturesProduct";
 import  Loading from "./Loading";
 import  ProductList from "./ProductList";
+import  CartList from "./CartList";
 
 export {
     Navbar, 
@@ -15,5 +16,6 @@ export {
     Hero,
     FeaturesProduct,
     Loading,
-    ProductList
+    ProductList,
+    CartList
 }
