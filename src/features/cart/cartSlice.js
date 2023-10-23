@@ -1,4 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
+import { toast } from 'react-toastify';
 
 const defaultState = {
   cartItems: [],
@@ -29,7 +30,12 @@ const cartSlice = createSlice({
             state.numItemsInCart += product.amount 
             state.cartTotal += product.amount * product.price
             state.orderTotal = state.cartTotal + state.shipping
+            toast.success("Item Added to the cart")
             localStorage.setItem('cart', JSON.stringify(state)) 
+        },
+        clearCart : (state) => {
+             localStorage.setItem('cart', JSON.stringify(defaultState))
+            return defaultState
         },
         removeItem: (state, action) => {
             const {product} = action.payload
@@ -39,12 +45,13 @@ const cartSlice = createSlice({
             state.numItemsInCart -= product.amount 
             state.cartTotal -= product.amount * product.price
             state.orderTotal = state.cartTotal + state.shipping
+            toast.warn("Item removed to the cart")
             localStorage.setItem('cart', JSON.stringify(state)) 
         }
     }
 
 })
 
-export const {addItem, removeItem} = cartSlice.actions
+export const {addItem, removeItem, clearCart} = cartSlice.actions
 
 export default cartSlice.reducer

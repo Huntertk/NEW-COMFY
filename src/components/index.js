@@ -7,6 +7,8 @@ import  FeaturesProduct from "./FeaturesProduct";
 import  Loading from "./Loading";
 import  ProductList from "./ProductList";
 import  CartList from "./CartList";
+import  OrderTotal from "./OrderTotal";
+import  CheckoutForm from "./CheckoutForm";
 
 export {
     Navbar, 
@@ -17,5 +19,7 @@ export {
     FeaturesProduct,
     Loading,
     ProductList,
-    CartList
+    CartList,
+    OrderTotal,
+    CheckoutForm
 }

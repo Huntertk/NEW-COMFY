@@ -1,6 +1,6 @@
 import React from 'react'
 import { createBrowserRouter, RouterProvider } from 'react-router-dom'
-import { Cart, HomeLayout, Landing, Products, SingleProducts } from './pages/index'
+import { Cart, Checkout, HomeLayout, Landing, Products, SingleProducts } from './pages/index'
 import { Error, ErrorElement } from './components/index'
 
 import { loader as landingLoader } from './pages/Landing'
@@ -34,6 +34,11 @@ const router = createBrowserRouter([
       {
         path:"cart",
         element: <Cart />,
+        errorElement: <ErrorElement />
+      },
+      {
+        path:"checkout",
+        element: <Checkout />,
         errorElement: <ErrorElement />
       }
     ]
