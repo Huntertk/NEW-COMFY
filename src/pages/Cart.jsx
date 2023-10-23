@@ -11,7 +11,7 @@ const Cart = () => {
     </section>
   }
   return (
-    <section className='flex items-center justify-around p-4'>
+    <section className='flex gap-8 flex-col md:flex-row items-center justify-around p-4'>
       <div className="flex flex-col gap-8">
       {state.cartItems.map((item) => {
         return <CartList key={item.cardID} {...item} />

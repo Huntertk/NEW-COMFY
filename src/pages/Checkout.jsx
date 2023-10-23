@@ -1,5 +1,5 @@
 import React from 'react'
-import { CheckoutForm, OrderTotal } from '../components'
+import { CheckoutForm, CheckoutTotal } from '../components'
 import { useSelector } from 'react-redux'
 import { Navigate} from 'react-router-dom'
 
@@ -10,7 +10,7 @@ const Checkout = () => {
     }
   return (
     <section className='grid md:grid-cols-2 items-center justify-items-center mt-4 gap-4'>
-        <OrderTotal />
+        <CheckoutTotal />
         <CheckoutForm />
     </section>
   )

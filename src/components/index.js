@@ -9,6 +9,7 @@ import  ProductList from "./ProductList";
 import  CartList from "./CartList";
 import  OrderTotal from "./OrderTotal";
 import  CheckoutForm from "./CheckoutForm";
+import  CheckoutTotal from "./CheckoutTotal";
 
 export {
     Navbar, 
@@ -21,5 +22,6 @@ export {
     ProductList,
     CartList,
     OrderTotal,
-    CheckoutForm
+    CheckoutForm,
+    CheckoutTotal
 }
